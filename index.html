@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr Jhatu | Actor Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg-color: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-highlight: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Blobs */
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: floatBG 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(56,189,248,0.3) 0%, rgba(0,0,0,0) 70%);
+        }
+
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(168,85,247,0.3) 0%, rgba(0,0,0,0) 70%);
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 30%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(52,211,153,0.2) 0%, rgba(0,0,0,0) 70%);
+            animation-delay: -10s;
+        }
+
+        @keyframes floatBG {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 10%) scale(1.2); }
+        }
+
+        /* Apple Liquid Glass Effect Utility */
+        .glass-card {
+            background: linear-gradient(135deg, var(--glass-bg), rgba(255,255,255,0.01));
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 0 var(--glass-highlight);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Add an internal shine to mimic liquid glass */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+            transform: skewX(-20deg);
+            animation: shine 8s infinite alternate;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        /* Navigation */
+        .glass-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* Layout */
+        main {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .section-padding {
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            padding: 50px;
+            gap: 50px;
+            max-width: 1000px;
+            width: 100%;
+            animation: floatCard 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
+        }
+
+        .hero-image-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transition: transform 0.5s;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-text {
+            flex: 1.5;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .glass-btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .primary-btn {
+            background: rgba(56, 189, 248, 0.2);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .primary-btn:hover {
+            background: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Other Sections */
+        .section-card {
+            padding: 60px;
+            margin-bottom: 40px;
+        }
+
+        .section-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .inner-glass {
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .inner-glass:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .inner-glass .role {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 15px;
+            background: rgba(52, 211, 153, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #34d399;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        /* Animations Triggered by JS */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            
+            .hero-image {
+                width: 250px;
+                height: 330px;
+            }
+
+            .button-group {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none; 
+            }
+            
+            .glass-nav {
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="glass-nav">
+        <div class="logo">MJ.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">My Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home" class="hero section-padding">
+            <div class="hero-container glass-card fade-in">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mr Jhatu - Actor" class="hero-image">
+                </div>
+                <div class="hero-text">
+                    <h1>Mr Jhatu</h1>
+                    <h2 class="subtitle">Actor</h2>
+                    <p>I am an actor and currently working in the web series <strong>'Hostel Daze'</strong>. I am passionate about acting and storytelling, and I enjoy bringing characters to life on screen.</p>
+                    <div class="button-group">
+                        <a href="#work" class="glass-btn primary-btn">Watch My Work</a>
+                        <a href="#contact" class="glass-btn secondary-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding">
+            <div class="glass-card section-card fade-in">
+                <h2>About Me</h2>
+                <p>Born with a passion for the cinematic arts, I have dedicated my life to the craft of acting. My journey started in theater and has evolved into mainstream web series. I believe in the power of empathy to understand a character and deliver a performance that resonates with the audience.</p>
+            </div>
+        </section>
+
+        <section id="work" class="section-padding">
+            <div class="glass-card section-card fade-in">
+                <h2>My Work</h2>
+                <div class="work-grid">
+                    <div class="work-item glass-card inner-glass">
+                        <h3>Hostel Daze</h3>
+                        <p>Web Series • Amazon Prime</p>
+                        <span class="role">Lead Role</span>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding">
+            <div class="glass-card section-card fade-in">
+                <h2>Let's Connect</h2>
+                <p>Interested in collaborating or just want to say hi? Reach out!</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon glass-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon glass-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon glass-btn"><i class="fab fa-imdb"></i></a>
+                    <a href="#" class="social-icon glass-btn"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Intersection Observer for Fade-in Animations
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            // Grab all elements with the 'fade-in' class
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+
+
+            // 2. Subtle Background Parallax Effect
+            // Moves the blur shapes slightly when the mouse moves to feel "liquid"
+            document.addEventListener("mousemove", (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+
+                const blob1 = document.querySelector('.blob-1');
+                const blob2 = document.querySelector('.blob-2');
+                const blob3 = document.querySelector('.blob-3');
+
+                if(blob1 && blob2 && blob3) {
+                    blob1.style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+                    blob2.style.transform = `translate(-${x * 40}px, -${y * 40}px)`;
+                    blob3.style.transform = `translate(${x * 20}px, -${y * 20}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
